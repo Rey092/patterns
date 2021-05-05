@@ -5,6 +5,8 @@ class CarAnalyticsForUSA:
 
 
 class Car:
+    price = 5
+
     def __init__(self, length, width):
         self.length = length
         self.width = width
