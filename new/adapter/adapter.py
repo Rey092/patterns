@@ -5,11 +5,30 @@ class CarAnalyticsForUSA:
 
 
 class Car:
-    price = 5
+    __price = 5
+    __price2 = {}
 
     def __init__(self, length, width):
         self.length = length
         self.width = width
+        # self.__dict__.update({'price': Car.__price})
+
+    @property
+    def price(self):
+        return Car.__price
+
+    @price.setter
+    def price(self, value):
+        Car.__price = value
+
+    @property
+    def price2(self):
+        return Car.__price2[str(id(self))]
+
+    @price2.setter
+    def price2(self, value):
+        Car.__price2[str(id(self))] = value
+
 
     def parameters(self):
         # metric data system
@@ -41,3 +60,7 @@ if __name__ == "__main__":
     print("Adapter:")
     car2 = CarAdapted(5.1, 2.2)
     print(car2.parameters_for_usa())
+    print(car2.price)
+    car1.price2 = 'car1 value'
+    car2.price2 = 'car2 value'
+    print(car1.price2, '///', car2.price2)
